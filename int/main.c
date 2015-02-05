@@ -37,6 +37,19 @@ int main(int argc, char *argv[])
 		printf("%d\n", int_vector_get(v, i));
 	}
 
+	printf("Empty? %u\n", int_vector_empty(v));
+
+	int_vector_t v_array;
+	int_vector_initialize(&v_array);
+	int arr[] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+	int_vector_assign_from_array(&v_array, arr, 10);
+	printf("\nAssigned from array:\n");
+	for (i = 0; i < int_vector_size(v_array); i++)
+	{
+		printf("%d\n", int_vector_get(v_array, i));
+	}
+
 	int_vector_uninitialize(v);
+	int_vector_uninitialize(vcopy);
 	return 0;
 }
