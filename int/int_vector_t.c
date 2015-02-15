@@ -8,14 +8,14 @@ void int_vector_size_at_least(int_vector_t *vector, size_t needed_size);
 
 void int_vector_initialize(int_vector_t *vector)
 {
-	int_vector_initialize_with_size(vector, 1);
+	int_vector_initialize_with_capacity(vector, 1);
 }
 
 void int_vector_initialize_with_capacity(int_vector_t *vector, size_t capacity)
 {
-	vector->array = malloc(size * sizeof *vector->array);
+	vector->array = malloc(capacity * sizeof *vector->array);
 	vector->elements = 0;
-	vector->capacity = size;
+	vector->capacity = capacity;
 }
 
 void int_vector_copy(int_vector_t *destination, int_vector_t *source)
@@ -73,6 +73,14 @@ void int_vector_push_back(int_vector_t *vector, int value)
 	int_vector_size_at_least(vector, new_elements);
 	vector->array[vector->elements] = value;
 	vector->elements = new_elements;
+}
+
+void int_vector_add(int_vector_t *vector, int value, size_t position)
+{
+	int_vector_size_at_least(vector, vector->elements + 1);
+	memmove(vector->array + position + 1, vector->array + position, (vector->elements - position) * sizeof *vector->array);
+	vector->array[position] = value;
+	vector->elements++;
 }
 
 void int_vector_clear(int_vector_t *vector)
