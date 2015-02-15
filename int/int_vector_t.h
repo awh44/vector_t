@@ -9,7 +9,7 @@ struct int_vector_t
 typedef struct int_vector_t int_vector_t;
 
 void int_vector_initialize(int_vector_t *vector);
-void int_vector_initialize_with_size(int_vector_t *vector, size_t size);
+void int_vector_initialize_with_capacity(int_vector_t *vector, size_t capacity);
 void int_vector_uninitialize(int_vector_t *vector);
 void int_vector_copy(int_vector_t *destination, int_vector_t *source);
 void int_vector_assign_from_array(int_vector_t *destination, int *array, size_t size);

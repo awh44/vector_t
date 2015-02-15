@@ -11,7 +11,7 @@ void int_vector_initialize(int_vector_t *vector)
 	int_vector_initialize_with_size(vector, 1);
 }
 
-void int_vector_initialize_with_size(int_vector_t *vector, size_t size)
+void int_vector_initialize_with_capacity(int_vector_t *vector, size_t capacity)
 {
 	vector->array = malloc(size * sizeof *vector->array);
 	vector->elements = 0;
