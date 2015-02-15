@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
 	print_vector(&v);
 
-	int_vector_add(&v, 1000, 8);
+	int_vector_insert(&v, 1000, 8);
 	printf("Added 1000 at position 8:\n");
 	print_vector(&v);
 
