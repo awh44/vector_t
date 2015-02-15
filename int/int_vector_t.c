@@ -1,10 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 
 #include "int_vector_t.h"
 
 void int_vector_size_at_least(int_vector_t *vector, size_t needed_size);
+uint8_t int_vector_is_power_two(size_t value);
 
 void int_vector_initialize(int_vector_t *vector)
 {
@@ -20,10 +22,7 @@ void int_vector_initialize_with_capacity(int_vector_t *vector, size_t capacity)
 
 void int_vector_copy(int_vector_t *destination, int_vector_t *source)
 {
-	if (destination->capacity < source->elements)
-	{
-		int_vector_resize(destination, source->elements);
-	}
+	int_vector_size_at_least(destination, source->elements);
 	memcpy(destination->array, source->array, source->elements * sizeof *source->array);
 	destination->elements = source->elements;
 }
@@ -67,6 +66,14 @@ void int_vector_set(int_vector_t *vector, size_t i, int value)
 	vector->array[i] = value;
 }
 
+void int_vector_insert(int_vector_t *vector, int value, size_t position)
+{
+	int_vector_size_at_least(vector, vector->elements + 1);
+	memmove(vector->array + position + 1, vector->array + position, (vector->elements - position) * sizeof *vector->array);
+	vector->array[position] = value;
+	vector->elements++;
+}
+
 void int_vector_push_back(int_vector_t *vector, int value)
 {
 	size_t new_elements = vector->elements + 1;
@@ -75,12 +82,9 @@ void int_vector_push_back(int_vector_t *vector, int value)
 	vector->elements = new_elements;
 }
 
-void int_vector_insert(int_vector_t *vector, int value, size_t position)
+void int_vector_pop_back(int_vector_t *vector)
 {
-	int_vector_size_at_least(vector, vector->elements + 1);
-	memmove(vector->array + position + 1, vector->array + position, (vector->elements - position) * sizeof *vector->array);
-	vector->array[position] = value;
-	vector->elements++;
+	vector->elements--;
 }
 
 void int_vector_clear(int_vector_t *vector)
@@ -100,4 +104,9 @@ void int_vector_size_at_least(int_vector_t *vector, size_t needed_size)
 		}
 		int_vector_resize(vector, new_size);
 	}
+}
+
+uint8_t int_vector_is_power_two(size_t value)
+{
+	return (value != 0) && (value & value - 1 == 0);
 }

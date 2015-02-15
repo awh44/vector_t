@@ -25,16 +25,28 @@ int main(int argc, char *argv[])
 	int_vector_t vcopy;
 	int_vector_initialize(&vcopy);
 	int_vector_copy(&vcopy, &v);
+	printf("v.capacity = %zu, vcopy.capacity = %zu\n", v.capacity, vcopy.capacity);
 
-	print_vector(&v);
-
-	int_vector_insert(&v, 1000, 8);
-	printf("Added 1000 at position 8:\n");
 	print_vector(&v);
 
 	printf("\nvcopy = \n");
 	print_vector(&vcopy);
+	int_vector_pop_back(&vcopy);
 	
+	printf("pop_back'd vcopy:\n");
+	print_vector(&vcopy);
+	
+	int_vector_pop_back(&vcopy);
+	int_vector_pop_back(&vcopy);
+	int_vector_pop_back(&vcopy);
+	printf("pop_back'd three more times:\n");
+	print_vector(&vcopy);
+
+
+	int_vector_insert(&v, 1000, 8);
+	printf("Added 1000 at position 8 of v:\n");
+	print_vector(&v);
+
 	int_vector_clear(&v);
 	printf("Printing a cleared vector:\n");
 	print_vector(&v);	
