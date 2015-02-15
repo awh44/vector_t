@@ -64,6 +64,11 @@ int main(int argc, char *argv[])
 	printf("\nAssigned from array:\n");
 	print_vector(&v_array);
 
+	printf("v_array contains 0? %u\n", int_vector_contains(&v_array, 0));
+	printf("Position of 4 in v_array: %zu\n", int_vector_find(&v_array, 4));
+	printf("Position of 25 in v_array: %zu\n", int_vector_find(&v_array, 25));
+	printf("v_array contains 28183? %u\n", int_vector_contains(&v_array, 28183));
+
 	int_vector_uninitialize(&v);
 	int_vector_uninitialize(&vcopy);
 	int_vector_uninitialize(&v_array);

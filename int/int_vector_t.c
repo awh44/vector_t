@@ -1,12 +1,14 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "int_vector_t.h"
 
+const size_t VECTOR_NOT_FOUND = SIZE_MAX;
+
 void int_vector_size_at_least(int_vector_t *vector, size_t needed_size);
-uint8_t int_vector_is_power_two(size_t value);
+unsigned short int_vector_is_power_two(size_t value);
 
 void int_vector_initialize(int_vector_t *vector)
 {
@@ -99,6 +101,33 @@ void int_vector_clear(int_vector_t *vector)
 	vector->elements = 0;
 }
 
+size_t int_vector_find_from(int_vector_t *vector, int value, size_t position)
+{
+	size_t i;
+	for (i = position; i < vector->elements; i++)
+	{
+		if (vector->array[i] == value)
+		{
+			return i;
+		}
+	}
+
+	return VECTOR_NOT_FOUND;
+}
+
+size_t int_vector_find(int_vector_t *vector, int value)
+{
+	return int_vector_find_from(vector, value, 0);
+}
+
+unsigned short int_vector_contains(int_vector_t *vector, int value)
+{
+	//the "or" condition is in the case where vector's array has SIZE_MAX elements. If find cannot
+	//find the value in the vector, it returns SIZE_MAX, but if it actually finds the value at
+	//SIZE_MAX, then that needs to be checked.
+	return (int_vector_find(vector, value) != VECTOR_NOT_FOUND) || (vector->elements == SIZE_MAX && vector->array[SIZE_MAX] == value);
+}
+
 void int_vector_size_at_least(int_vector_t *vector, size_t needed_size)
 {
 	if (needed_size > vector->capacity)
@@ -112,7 +141,7 @@ void int_vector_size_at_least(int_vector_t *vector, size_t needed_size)
 	}
 }
 
-uint8_t int_vector_is_power_two(size_t value)
+unsigned short int_vector_is_power_two(size_t value)
 {
-	return (value != 0) && (value & value - 1 == 0);
+	return (value != 0) && ((value & (value - 1)) == 0);
 }

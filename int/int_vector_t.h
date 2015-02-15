@@ -8,6 +8,8 @@ struct int_vector_t
 };
 typedef struct int_vector_t int_vector_t;
 
+extern const size_t VECTOR_NOT_FOUND;
+
 void int_vector_initialize(int_vector_t *vector);
 void int_vector_initialize_with_capacity(int_vector_t *vector, size_t capacity);
 void int_vector_uninitialize(int_vector_t *vector);
@@ -23,3 +25,6 @@ void int_vector_remove(int_vector_t *vector, size_t position);
 void int_vector_push_back(int_vector_t *vector, int value);
 void int_vector_pop_back(int_vector_t *vector);
 void int_vector_clear(int_vector_t *vector);
+size_t int_vector_find_from(int_vector_t *vector, int value, size_t position);
+size_t int_vector_find(int_vector_t *vector, int value);
+unsigned short int_vector_contains(int_vector_t *vector, int value);
