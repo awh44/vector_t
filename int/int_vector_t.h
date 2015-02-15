@@ -19,6 +19,7 @@ unsigned short int_vector_empty(int_vector_t *vector);
 int int_vector_get(int_vector_t *vector, size_t i);
 void int_vector_set(int_vector_t *vector, size_t i, int value);
 void int_vector_insert(int_vector_t *vector, int value, size_t position);
+void int_vector_remove(int_vector_t *vector, size_t position);
 void int_vector_push_back(int_vector_t *vector, int value);
 void int_vector_pop_back(int_vector_t *vector);
 void int_vector_clear(int_vector_t *vector);

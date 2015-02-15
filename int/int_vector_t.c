@@ -74,6 +74,12 @@ void int_vector_insert(int_vector_t *vector, int value, size_t position)
 	vector->elements++;
 }
 
+void int_vector_remove(int_vector_t *vector, size_t position)
+{
+	memmove(vector->array + position, vector->array + position + 1, (vector->elements - position) * sizeof *vector->array);
+	vector->elements--;
+}
+
 void int_vector_push_back(int_vector_t *vector, int value)
 {
 	size_t new_elements = vector->elements + 1;

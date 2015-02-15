@@ -46,6 +46,10 @@ int main(int argc, char *argv[])
 	int_vector_insert(&v, 1000, 8);
 	printf("Added 1000 at position 8 of v:\n");
 	print_vector(&v);
+	
+	int_vector_remove(&v, 0);
+	printf("Removed first element of v:\n");
+	print_vector(&v);
 
 	int_vector_clear(&v);
 	printf("Printing a cleared vector:\n");
