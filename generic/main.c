@@ -101,6 +101,15 @@ int main(int argc, char *argv[])
 		printf("%d\n", char_vector_compare(&c, &c_goodbye));
 		printf("%d\n", char_vector_compare(&c_goodbye, &c));
 
+		char *c_array = char_vector_c_array(&c);
+		{
+			size_t i;
+			for (i = 0; i < char_vector_size(&c); i++)
+			{
+				printf("%c\n", c_array[i]);
+			}
+		}
+
 		char_vector_uninitialize(&c);
 		char_vector_uninitialize(&c_copy);
 		char_vector_uninitialize(&c_goodbye);
