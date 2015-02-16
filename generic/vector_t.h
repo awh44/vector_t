@@ -51,6 +51,22 @@ void type##_vector_uninitialize(type##_vector_t *vector)\
 	free(vector->array);\
 }\
 \
+int type##_vector_compare(type##_vector_t *a, type##_vector_t *b)\
+{\
+	if (a->elements < b->elements)\
+	{\
+		return -1;\
+	}\
+\
+	if (a->elements > b->elements)\
+	{\
+		return 1;\
+	}\
+\
+	printf("Doing memcmp...(a->elements = %zu, b->elements = %zu)\n", a->elements, b->elements);\
+	return memcmp(a->array, b->array, a->elements * sizeof *a->array);\
+}\
+\
 size_t type##_vector_size(type##_vector_t *vector)\
 {\
 	return vector->elements;\

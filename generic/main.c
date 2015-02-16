@@ -97,6 +97,9 @@ int main(int argc, char *argv[])
 		printf("%s\n", c.array);
 		printf("%s\n", c_copy.array);
 		printf("%.*s\n", c_goodbye.elements, c_goodbye.array);
+		printf("%d\n", char_vector_compare(&c, &c_copy));
+		printf("%d\n", char_vector_compare(&c, &c_goodbye));
+		printf("%d\n", char_vector_compare(&c_goodbye, &c));
 
 		char_vector_uninitialize(&c);
 		char_vector_uninitialize(&c_copy);
