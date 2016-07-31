@@ -54,8 +54,10 @@ static void type##_vector_uninitialize(type##_vector_t *vector)\
 	free(vector->array);\
 }\
 \
-static int type##_vector_compare(type##_vector_t *a, type##_vector_t *b)\
+static int type##_vector_compare(const void *voida, const void *voidb)\
 {\
+	type##_vector_t *a = (type##_vector_t *) voida;\
+	type##_vector_t *b = (type##_vector_t *) voidb;\
 	if (a->elements < b->elements)\
 	{\
 		return -1;\
